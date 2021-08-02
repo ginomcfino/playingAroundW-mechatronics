@@ -3,7 +3,7 @@
 #include <Servo.h>
 /* After including the corresponding libraries,
    we can use the "class" like "Servo" created by the developer for us.
-   We can use the functions and variables created in the libraries by creating 
+   We can use the functions and variables created in the libraries by creating
    objects like the following "myservo" to refer to the members in ".".*/
 
 Servo myservo;
@@ -11,21 +11,42 @@ Servo myservo;
 /*  you can see Servo as a complex date type(Including functions and various data types)
     and see myservo as variables.               */
 
-void setup(){
+void setup() {
   /*"attach" and "write" are both functions,
-     and they are members contained in the complex structure of "Servo". 
+     and they are members contained in the complex structure of "Servo".
      We can only use them if we create the object "myservo" for the complex structure of "Servo".
   */
-  myservo.attach(9);//connect pin 9 with the control line(the middle line of Servo) 
-  myservo.write(90);// move servos to center position -> 90°
-} 
-void loop(){
-  myservo.write(90);// move servos to center position -> 90°
+  myservo.attach(9);//connect pin 9 with the control line(the middle line of Servo)
+//  myservo.write(90);// move servos to center position -> 90°
+
+//  myservo.write(0);
   delay(1000);
-  myservo.write(60);// move servos to center position -> 60°
-  delay(1000);
-  myservo.write(90);// move servos to center position -> 90°
-  delay(1000);
-  myservo.write(150);// move servos to center position -> 120°
-  delay(1000);
+  myservo.writeMicroseconds(1000);
+}
+void loop() {
+  for(int i=1000; i<=2000; i+=1) {
+    delay(10);
+    myservo.writeMicroseconds(i);
+  }
+  delay(500);
+  for(int i=2000; i>=1000; i-=1) {
+    delay(10);
+    myservo.writeMicroseconds(i);
+  }
+//  for(int i = 0 ; i <= 90 ; i += 1) {
+//    delay(50);
+//    myservo.write(i);
+//  }
+//  for(int i = 90 ; i > 0 ; i -= 1) {
+//    delay(50);
+//    myservo.write(i);
+//  }
+//  myservo.write(90);// move servos to center position -> 90°
+//  delay(1000);
+//  myservo.write(60);// move servos to center position -> 60°
+//  delay(1000);
+//  myservo.write(90);// move servos to center position -> 90°
+//  delay(1000);
+//  myservo.write(150);// move servos to center position -> 120°
+//  delay(1000);
 }
